@@ -7,14 +7,18 @@ Filter on gender :
 <br>
 If left untouched it will return both.
 <br>
-
-
+<br>
+Page Size : <input type ="number" [(ngModel)] = "PageSize">
+<br>
+Page Number : <input type ="number" [(ngModel)] = "PageNr">
+<br>
+<br>
 <button (click)="GetAllCharacters()">Get All Characters </button>
 
 <div *ngIf="Characters">
-  <ol>
+  <ul>
     <li *ngFor="let Character of Characters">
-      Url: {{Character.url}} 
+      ID: {{Character.url | slice : 45}} 
       <br> 
       Gender: {{Character.gender}} 
       <div *ngIf="Character.name != ''">
@@ -28,7 +32,7 @@ If left untouched it will return both.
         </ol>
       </div>
     </li>
-  </ol>
+  </ul>
   <button (click)="GoToNextPage()" >Next page</button><br>
   <button (click)="GoToPrevPage()" >Prev page</button>
 </div>
