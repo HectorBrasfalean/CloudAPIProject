@@ -1,0 +1,23 @@
+Search a specific character with the help of its ID:
+<input type ="number" [(ngModel)] = "Id">
+<br>
+<button (click)="GetACharacter()">Search Character</button>
+<br>
+<div *ngIf="Character">
+  <ol>
+    <li>
+      Url: {{Character.url}} 
+      <br> 
+      Gender: {{Character.gender}} 
+      <div *ngIf="Character.name != ''">
+          Name: {{Character.name}}
+      </div>
+      <div *ngIf="Character.tvSeries != ''">
+        TV Series : 
+        <ol>
+          <li *ngFor="let tvserie of Character.tvSeries">{{tvserie}}</li>
+        </ol>
+      </div>
+    </li>
+  </ol>
+</div>

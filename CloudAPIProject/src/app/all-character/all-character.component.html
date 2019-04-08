@@ -1,0 +1,35 @@
+
+Filter on gender :  
+<select [(ngModel)]="Gender">
+  <option value="female">Female</option>
+  <option value="male">Male</option>
+</select>
+<br>
+If left untouched it will return both.
+<br>
+
+
+<button (click)="GetAllCharacters()">Get All Characters </button>
+
+<div *ngIf="Characters">
+  <ol>
+    <li *ngFor="let Character of Characters">
+      Url: {{Character.url}} 
+      <br> 
+      Gender: {{Character.gender}} 
+      <div *ngIf="Character.name != ''">
+     
+          Name: {{Character.name}}
+      </div>
+      <div *ngIf="Character.tvSeries != ''">
+        TV Series : 
+        <ol>
+          <li *ngFor="let tvserie of Character.tvSeries">{{tvserie}}</li>
+        </ol>
+      </div>
+    </li>
+  </ol>
+  <button (click)="GoToNextPage()" >Next page</button><br>
+  <button (click)="GoToPrevPage()" >Prev page</button>
+</div>
+
