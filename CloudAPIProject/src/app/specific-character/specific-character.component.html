@@ -6,7 +6,7 @@ Search a specific character with the help of its ID:
 <div *ngIf="Character">
   <ol>
     <li>
-      Url: {{Character.url}} 
+      ID: {{Character.url | slice : 45}} 
       <br> 
       Gender: {{Character.gender}} 
       <div *ngIf="Character.name != ''">
