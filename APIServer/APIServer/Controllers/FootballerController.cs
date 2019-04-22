@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIServer.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/footballers")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class FootballerController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        LibraryContext context;
+
+        public FootballerController(LibraryContext ctx)
         {
-            return new string[] { "value1", "value2" };
+            this.context = ctx;
+        }
+
+        [HttpGet]
+        public List<Footballer> GetFootballers()
+        {
+            return context.Footballers.Include(b => b.FootballClub)
+                                .ToList();
         }
 
         // GET api/values/5
