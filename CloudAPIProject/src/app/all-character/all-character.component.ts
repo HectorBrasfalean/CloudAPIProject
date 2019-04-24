@@ -11,7 +11,7 @@ export class AllCharacterComponent implements OnInit {
   Characters : ICharacter[];
   PageNr : number = 1;
   PageSize : number = 5;
-  Gender : string;
+  Gender : string = "";
 
   constructor(private APIServ : APIServiceService) { }
 

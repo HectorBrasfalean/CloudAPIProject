@@ -12,13 +12,15 @@ import { APIServiceService } from './apiservice.service';
 import { SpecificCharacterComponent } from './specific-character/specific-character.component';
 import { AllCharacterComponent } from './all-character/all-character.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { FootballerComponentComponent } from './footballer-component/footballer-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SpecificCharacterComponent,
     AllCharacterComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    FootballerComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     RouterModule.forRoot([
       { path: "all", component: AllCharacterComponent},
       { path: "specific", component: SpecificCharacterComponent},
+      { path: "footballers", component: FootballerComponentComponent},
       { path: "", redirectTo: "all", pathMatch: "full"}
     ])
   ],
