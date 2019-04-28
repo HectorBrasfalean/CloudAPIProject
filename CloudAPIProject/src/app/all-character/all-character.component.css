@@ -13,14 +13,7 @@ button{
     color: lightblue;
     border-color: rgb(66, 66, 155);
 }
-.item1 { 
-  grid-area: search;
-  text-align: center; 
-}
-.item2 { 
-    grid-area: result; 
-    text-align: center;
-}
+
 .list{
     text-align: center;
 
@@ -39,7 +32,8 @@ ul{
 .grid-container {
     width:100%;
     display: grid;
-    
-  grid-template-areas:
-    'search result';
+    text-align: center;
+
+  grid-template-columns:
+    50% 50%;
 } 

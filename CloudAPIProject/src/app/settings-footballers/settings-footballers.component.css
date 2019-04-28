@@ -1,0 +1,14 @@
+body{
+    text-align: center;
+    font-family: "Comic Sans MS"
+}
+
+input{
+    font-family: "Comic Sans MS";
+    text-align: center;
+}
+
+select{
+    font-family: "Comic Sans MS";
+    text-align-last: center;
+}

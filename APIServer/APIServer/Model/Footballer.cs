@@ -1,4 +1,4 @@
-﻿using APIServer.Model;
+﻿
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,9 +16,5 @@ public class Footballer
     [Required]
     [Range(1, 150)]
     public double? Weight { get; set; }
-
-    public FootballClub FootballClub { get; set; }
-
-    public int ClubId { get; set; }
 
 }

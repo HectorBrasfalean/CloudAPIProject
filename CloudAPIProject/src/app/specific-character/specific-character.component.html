@@ -1,8 +1,9 @@
 <div>
       Search a specific character with the help of its ID:
-      <input type ="number" [(ngModel)] = "Id">
+      <input type ="number" [(ngModel)] = "Id" (ngModelChange)="Save()">
       &nbsp;&nbsp;
-      <button (click)="GetACharacter()">Search Character</button>
+      <button *ngIf="Id>0" (click)="GetACharacter()">Search Character</button>
+
  
 
     <div *ngIf="Character" >

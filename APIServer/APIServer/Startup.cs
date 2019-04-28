@@ -42,12 +42,17 @@ namespace APIServer
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
             DBInitializer.Initialize(context);
 
             app.UseCors(builder =>
                 builder.AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod());
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

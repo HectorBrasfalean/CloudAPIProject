@@ -10,7 +10,13 @@ export class SpecificCharacterComponent implements OnInit {
 
   Character : ICharacter;
   Id : number;
-  constructor(private APIServ : APIServiceService) { }
+  constructor(private APIServ : APIServiceService) {
+    this.Id = this.APIServ.searchedId;
+  }
+
+  Save(){
+    this.APIServ.searchedId = this.Id;
+  }
 
   ngOnInit() {
   }

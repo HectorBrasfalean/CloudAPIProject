@@ -1,3 +1,42 @@
-<p>
-  footballer-component works!
-</p>
+<div class="grid-container">
+    <div class="form">
+      <h2>Add a footballer</h2>
+      <p>Fill in everything and the button to add the footballer will appear.</p>
+      Name : <input type ="text" [(ngModel)] = "Name" (ngModelChange)="Save()" placeholder="Lionel Messi"><br>
+      Length : <input type ="number" [(ngModel)] = "Length" (ngModelChange)="Save()" placeholder="1.74">&nbsp;m<br>
+      Weight : <input type ="number" [(ngModel)] = "Weight" (ngModelChange)="Save()" placeholder="72">&nbsp;kg<br>
+      Nationality : <input type ="text" [(ngModel)] = "Nationality" (ngModelChange)="Save()" placeholder="Argentine"><br>
+      Born : <input type ="text" [(ngModel)] = "Born" (ngModelChange)="Save()" placeholder="24 June 1987"><br><br>
+      <button *ngIf="Name && Length > 0 && Weight > 0 && Nationality && Born" (click)="AddFootballer()">Add Footballer</button>
+      <div class="form">
+          <h2>Delete a footballer</h2>
+          <p>Fill in the id of the player and the button will apear.</p>
+          ID : <input type ="number" [(ngModel)] = "Id" (ngModelChange)="Save()" placeholder="1"><br><br>
+          <button *ngIf="Id" (click)="DeleteFootballer()">Delete Footballer</button>
+      </div>
+    </div>
+    <div *ngIf="Footballers">
+        <ul>
+          <h4>Current Page : {{Page}}</h4>
+          <div class="sub-container">
+ 
+              <li *ngFor="let Footballer of Footballers">
+                  <strong>{{Footballer.name}} ( ID : {{Footballer.id}} )</strong>
+                  <ul>
+                    Length : {{Footballer.length}} m <br>
+                    Weight : {{Footballer.weight}} kg <br>
+                    Nationality : {{Footballer.nationality}} <br>
+                    Born : {{Footballer.born}} <br>
+                  </ul><br>
+              </li>
+          </div>
+
+        </ul>
+        <div class="buttonclass">
+            <button  (click)="GoToPrevPage()">Prev Page</button>
+            <button  (click)="GoToNextPage()">Next Page</button>
+        </div>
+    </div>
+
+</div>
+

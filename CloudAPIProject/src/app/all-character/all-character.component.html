@@ -1,7 +1,7 @@
 <div class="grid-container">
-  <div class="item1">
+  <div>
       Filter on gender : <br> 
-      <select [(ngModel)]="Gender">
+      <select [(ngModel)]="Gender" (ngModelChange)="Save()">
         <option value="female">Female</option>
         <option value="male">Male</option>
         <option value="">Both</option>
@@ -9,22 +9,25 @@
       
       <br>
       <br>
-      Page Size : <br> <input type ="number" [(ngModel)] = "PageSize">
+      Page Size : <br> <input type ="number" [(ngModel)] = "PageSize" (ngModelChange)="Save()">
       <br><br>
-      Page Number : <br> <input type ="number" [(ngModel)] = "PageNr">
+      Page Number : <br> <input type ="number" [(ngModel)] = "PageNr" (ngModelChange)="Save()">
       <br>
       <br>
-      <button (click)="GetAllCharacters()">Get Characters </button>
+      <button *ngIf="PageSize > 0 && PageNr > 0" (click)="GetAllCharacters()">Get Characters </button>
       
   </div>
 
-<div *ngIf="Characters" class="item2">
-  <ul>
-    <li *ngFor="let Character of Characters">
-      ===================================<br>
-      ID: {{Character.url | slice : 45}} 
-      <br> 
-      Gender: {{Character.gender}} 
+  <div *ngIf="Characters">
+    <ul>
+      <li *ngFor="let Character of Characters">
+      
+      <p>
+        ===================================<br>
+        ID: {{Character.url | slice : 45}}<br> 
+        Gender: {{Character.gender}}  
+      </p>
+      
       <div *ngIf="Character.name != ''">
           Name: {{Character.name}}
       </div>
@@ -34,14 +37,9 @@
           <li *ngFor="let tvserie of Character.tvSeries">{{tvserie}}</li>
         </ol>
       </div>
-      
-    </li>
-  </ul>
-  <button (click)="GoToPrevPage()" >Prev page</button>&nbsp;&nbsp;
-  <button (click)="GoToNextPage()" >Next page</button> 
- 
-
-</div>
-
-
+      </li>
+    </ul>
+    <button (click)="GoToPrevPage()">Prev page</button>&nbsp;&nbsp;
+    <button (click)="GoToNextPage()">Next page</button> 
+  </div>
 </div>

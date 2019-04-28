@@ -13,6 +13,7 @@ import { SpecificCharacterComponent } from './specific-character/specific-charac
 import { AllCharacterComponent } from './all-character/all-character.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FootballerComponentComponent } from './footballer-component/footballer-component.component';
+import { SettingsFootballersComponent } from './settings-footballers/settings-footballers.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FootballerComponentComponent } from './footballer-component/footballer-
     SpecificCharacterComponent,
     AllCharacterComponent,
     ToolbarComponent,
-    FootballerComponentComponent
+    FootballerComponentComponent,
+    SettingsFootballersComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { FootballerComponentComponent } from './footballer-component/footballer-
       { path: "all", component: AllCharacterComponent},
       { path: "specific", component: SpecificCharacterComponent},
       { path: "footballers", component: FootballerComponentComponent},
+      { path: "settings", component: SettingsFootballersComponent},
       { path: "", redirectTo: "all", pathMatch: "full"}
     ])
   ],
