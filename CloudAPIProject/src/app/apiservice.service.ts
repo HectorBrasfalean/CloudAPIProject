@@ -17,6 +17,7 @@ export class APIServiceService {
   pageNumber : number = 1;
   gender : string = "";
   searchedId : number = 1;
+  searchedIdFootballer : number = 1;
   id : number;
   name : string;
   weight : number;
@@ -32,6 +33,10 @@ export class APIServiceService {
 
   GetCharacter(id:number){
     return this.http.get<ICharacter>(`https://anapioficeandfire.com/api/characters/${id}`);
+  }
+
+  GetFootballer(id:number){
+    return this.http.get<IFootballer>(`https://localhost:44316/api/footballers/${id}`);
   }
   
   GetFootballers(){

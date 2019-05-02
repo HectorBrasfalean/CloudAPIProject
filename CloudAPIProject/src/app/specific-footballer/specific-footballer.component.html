@@ -1,0 +1,19 @@
+<div>
+  Search a specific character with the help of its ID:
+  <input type ="number" [(ngModel)] = "Id" (ngModelChange)="Save()">
+  &nbsp;&nbsp;
+  <button *ngIf="Id>0" (click)="GetAFootballer()">Search Footballer</button>
+
+
+<br><br>
+<div *ngIf="Footballer" >
+  <strong>{{Footballer.name}} ( ID : {{Footballer.id}} )</strong>
+  <ul>
+    Length : {{Footballer.length}} m <br>
+    Weight : {{Footballer.weight}} kg <br>
+    Nationality : {{Footballer.nationality}} <br>
+    Born : {{Footballer.born}} <br>
+  </ul><br>
+</div>
+</div>
+
