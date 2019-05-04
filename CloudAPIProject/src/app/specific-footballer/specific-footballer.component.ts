@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IFootballer, APIServiceService } from '../apiservice.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-specific-footballer',

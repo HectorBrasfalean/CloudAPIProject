@@ -28,7 +28,9 @@ export class APIServiceService {
   constructor(private http : HttpClient) { }
 
   GetAllCharacters(pageSize:number = 10,pageNr:number = 1,gender:string){
-    return this.http.get<ICharacter[]>(`https://anapioficeandfire.com/api/characters?pageSize=${pageSize}&page=${pageNr}&gender=${gender}`);
+    return this.http.get<ICharacter[]>(`https://anapioficeandfire.com/api/characters?pageSize=${pageSize}
+                                                                                        &page=${pageNr}
+                                                                                        &gender=${gender}`);
   }
 
   GetCharacter(id:number){
@@ -43,8 +45,11 @@ export class APIServiceService {
     if(this.weightFilter == null){
       this.weightFilter = "";
     }
-    return this.http.get<IFootballer[]>(`https://localhost:44316/api/footballers?page=${this.pageNumberFootballer}&pageSize=${this.pageSizeFootballer}
-                                                                                    &direction=${this.direction}&weight=${this.weightFilter}&nationality=${this.nationalityFilter}
+    return this.http.get<IFootballer[]>(`https://localhost:44316/api/footballers?page=${this.pageNumberFootballer}
+                                                                                    &pageSize=${this.pageSizeFootballer}
+                                                                                    &direction=${this.direction}
+                                                                                    &weight=${this.weightFilter}
+                                                                                    &nationality=${this.nationalityFilter}
                                                                                     &sortBy=${this.sortBy}`);
   }
 

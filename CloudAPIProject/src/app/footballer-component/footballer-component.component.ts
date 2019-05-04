@@ -37,7 +37,7 @@ export class FootballerComponentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.GetFootballers();
+   
   }
 
   Save(){

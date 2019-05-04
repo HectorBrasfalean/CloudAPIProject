@@ -15,6 +15,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FootballerComponentComponent } from './footballer-component/footballer-component.component';
 import { SettingsFootballersComponent } from './settings-footballers/settings-footballers.component';
 import { SpecificFootballerComponent } from './specific-footballer/specific-footballer.component';
+import { LoginComponent } from './login/login.component';
+import { callbackify } from 'util';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { SpecificFootballerComponent } from './specific-footballer/specific-foot
     ToolbarComponent,
     FootballerComponentComponent,
     SettingsFootballersComponent,
-    SpecificFootballerComponent
+    SpecificFootballerComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,15 +37,17 @@ import { SpecificFootballerComponent } from './specific-footballer/specific-foot
     ToolbarModule,
     ButtonModule,
     RouterModule.forRoot([
+      { path: "login", component: LoginComponent},
       { path: "all", component: AllCharacterComponent},
       { path: "specific", component: SpecificCharacterComponent},
       { path: "footballers", component: FootballerComponentComponent},
       { path: "footballerbyid", component: SpecificFootballerComponent},
       { path: "settings", component: SettingsFootballersComponent},
-      { path: "", redirectTo: "all", pathMatch: "full"}
+      { path: "", redirectTo: "login", pathMatch: "full"},
+      { path: "**", redirectTo: "login", pathMatch: "full"}
     ])
   ],
-  providers: [APIServiceService],
+  providers: [APIServiceService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

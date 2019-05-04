@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIServiceService, ICharacter } from '../apiservice.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-all-character',
@@ -13,10 +14,13 @@ export class AllCharacterComponent implements OnInit {
   PageSize : number;
   Gender : string;
 
-  constructor(private APIServ : APIServiceService) {
+  constructor(private APIServ : APIServiceService,private AuthServ:AuthService) {
     this.Gender = this.APIServ.gender;
     this.PageNr = this.APIServ.pageNumber;
     this.PageSize = this.APIServ.pageSize;
+    //if(!AuthServ.isAuthenticated()){
+    //   window.location.href="http://localhost:4200/login";
+    //}
   }
 
   ngOnInit() {

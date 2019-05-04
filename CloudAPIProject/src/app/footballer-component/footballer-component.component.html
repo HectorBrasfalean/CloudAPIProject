@@ -15,6 +15,9 @@
           <button *ngIf="Id" (click)="DeleteFootballer()">Delete Footballer</button>
       </div>
     </div>
+    <div *ngIf="!Footballers">
+      <button (click)="GetFootballers()">Get Footballers</button>
+    </div>
     <div *ngIf="Footballers">
         <ul>
           <h4>Current Page : {{Page}}</h4>

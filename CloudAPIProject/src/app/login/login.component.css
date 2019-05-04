@@ -1,0 +1,12 @@
+button{
+    font-family: "Comic Sans MS";
+    background-color:darkblue;
+    color: lightblue;
+    width: 20%;
+    height: 40px;
+    border-color: rgb(66, 66, 155);
+}
+
+div{
+    text-align: center;
+}
