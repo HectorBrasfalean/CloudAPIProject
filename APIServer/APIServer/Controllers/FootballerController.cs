@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,7 @@ namespace APIServer.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public List<Footballer> GetFootballers(string nationality, int? weight,
                                                  string sortBy, string direction = "asc",
                                                  int pageSize = 6, int page = 0)
@@ -69,6 +71,7 @@ namespace APIServer.Controllers
             return query.ToList();
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Footballer> GetFootballerById(int id)
         {
@@ -81,6 +84,7 @@ namespace APIServer.Controllers
                 return footballer;
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult<Footballer> AddFootballer([FromBody] Footballer footballer)
         {
@@ -91,6 +95,7 @@ namespace APIServer.Controllers
             return Created("", footballer);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public ActionResult<Footballer> UpdateBook([FromBody]Footballer footballer)
         {
@@ -102,6 +107,7 @@ namespace APIServer.Controllers
 
         [Route("{id}")]
         [HttpDelete]
+        [Authorize]
         public ActionResult<Footballer> Delete(int id)
         {
 
