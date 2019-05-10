@@ -1,90 +1,135 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable()
 export class AuthService {
 
   private _idToken: string;
   private _accessToken: string;
+  private userProfile : any;
   private _expiresAt: number;
+  authenticated : boolean;
+
+  grantToken : IGrantToken = {
+    audience: "https://localhost:44316/api/footballers",
+    grant_type: "client_credentials",
+    client_id: "cVtlHGhuTfeBb5tTVtIbGWqCc6IFJ0P5",
+    client_secret: "-OS3kuLnSSmw-Ogg26JKU4zzn6K7sn4340FAfYQmfFrT6UQW41vS8t4kv9Adza43"
+  }
 
   auth0 = new auth0.WebAuth({
-    clientID: 'TjwO6Ouj0LgZbRE8b4Bm4WFXk867sjZk',
+    clientID: 'cVtlHGhuTfeBb5tTVtIbGWqCc6IFJ0P5',
     domain: 'dev-mmm1xxm1.eu.auth0.com',
-    responseType: 'token id_token',
-    redirectUri: 'http://localhost:4200/all',
-    scope: 'openid'
+    responseType: 'token',
+    redirectUri: 'http://localhost:4200/callback',
+    scope: 'openid',
+    client_secret: '-OS3kuLnSSmw-Ogg26JKU4zzn6K7sn4340FAfYQmfFrT6UQW41vS8t4kv9Adza43'
   });
 
-  constructor(public router: Router) {
-    this._idToken = '';
-    this._accessToken = '';
-    this._expiresAt = 0;
+  constructor(public router: Router,private http : HttpClient) {
+    this.getAccessToken();
   }
 
-  get accessToken(): string {
-    return this._accessToken;
-  }
-
-  get idToken(): string {
-    return this._idToken;
-  }
-
-  public login(): void {
-    this.auth0.authorize();
-  }
-
-  public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        this.localLogin(authResult);
-        //this.router.navigate(['/all']);
-      } else if (err) {
-        //this.router.navigate(['/all']);
-        console.log(err);
-      }
-    });
-  }
-
-  private localLogin(authResult): void {
-    // Set the time that the Access Token will expire at
-    const expiresAt = (authResult.expiresIn * 1000) + Date.now();
-    this._accessToken = authResult.accessToken;
-    this._idToken = authResult.idToken;
-    this._expiresAt = expiresAt;
-  }
-
-  public renewTokens(): void {
+  getAccessToken(){
     this.auth0.checkSession({}, (err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.localLogin(authResult);
-      } else if (err) {
-        alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-        this.logout();
-        
+      if (authResult && authResult.accessToken) {
+        this.getUserInfo(authResult);
       }
     });
   }
+
+  getUserInfo(authResult) {
+    // Use access token to retrieve user's profile and set session
+    this.auth0.client.userInfo(authResult.accessToken, (err, profile) => {
+      if (profile) {
+        this._setSession(authResult, profile);
+      }
+    });
+  }
+
+  private _setSession(authResult, profile) {
+    // Save authentication data and update login status subject
+    this._expiresAt = authResult.expiresIn * 1000 + Date.now();
+    this._accessToken = authResult.accessToken;
+    this.userProfile = profile;
+    this.authenticated = true;
+  }
+
+  handleLoginCallback() {
+    // When Auth0 hash parsed, get profile
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken) {
+        window.location.hash = '';
+        this.getUserInfo(authResult);
+      } else if (err) {
+        console.error(`Error: ${err.error}`);
+      }
+      this.router.navigate(['/']);
+    });
+  }
+
+  public login() : void{
+    this.auth0.authorize();
+    
+  }
+
+  getToken(){
+    return this.http.post<IReceivedToken>(`https://dev-mmm1xxm1.eu.auth0.com/oauth/token`,this.grantToken);
+  }
+
+ 
+
+
+  // private localLogin(authResult): void {
+  //   // Set the time that the Access Token will expire at
+  //   const expiresAt = (authResult.expiresIn * 1000) + Date.now();
+  //   this._accessToken = authResult.accessToken;
+  //   this._idToken = authResult.idToken;
+  //   this._expiresAt = expiresAt;
+  // }
+
+  // public renewTokens(): void {
+  //   this.auth0.checkSession({}, (err, authResult) => {
+  //     if (authResult && authResult.accessToken && authResult.idToken) {
+  //       this.localLogin(authResult);
+  //     } else if (err) {
+  //       alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+  //       this.logout();
+        
+  //     }
+  //   });
+  // }
   
 
-  public logout(): void {
-    // Remove tokens and expiry time
-    this._accessToken = '';
-    this._idToken = '';
-    this._expiresAt = 0;
-    
+  logout() {
+    // Log out of Auth0 session
+    // Ensure that returnTo URL is specified in Auth0
+    // Application settings for Allowed Logout URLs
     this.auth0.logout({
-      returnTo: "http://localhost:4200/login"
+      returnTo: 'http://localhost:4200/login',
+      clientID: 'cVtlHGhuTfeBb5tTVtIbGWqCc6IFJ0P5'
     });
   }
 
-  public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // access token's expiry time
-    return this._accessToken && new Date().getSeconds() < this._expiresAt;
+  get isLoggedIn(): boolean {
+    // Check if current date is before token
+    // expiration and user is signed in locally
+    return Date.now() < this._expiresAt && this.authenticated;
   }
 
 
+}
+export interface IGrantToken {
+  audience: string;
+  grant_type: string;
+  client_id: string;
+  client_secret: string;
+}  
+export interface IReceivedToken {
+  access_token: string;
+  expires_in: number;
+  token_type: string;
 }

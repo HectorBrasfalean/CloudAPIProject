@@ -18,6 +18,8 @@ import { SpecificFootballerComponent } from './specific-footballer/specific-foot
 import { LoginComponent } from './login/login.component';
 import { callbackify } from 'util';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { CallbackComponent } from './callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { AuthService } from './auth.service';
     SettingsFootballersComponent,
     SpecificFootballerComponent,
     LoginComponent,
+    CallbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,16 +41,17 @@ import { AuthService } from './auth.service';
     ButtonModule,
     RouterModule.forRoot([
       { path: "login", component: LoginComponent},
-      { path: "all", component: AllCharacterComponent},
-      { path: "specific", component: SpecificCharacterComponent},
-      { path: "footballers", component: FootballerComponentComponent},
-      { path: "footballerbyid", component: SpecificFootballerComponent},
-      { path: "settings", component: SettingsFootballersComponent},
-      { path: "", redirectTo: "login", pathMatch: "full"},
-      { path: "**", redirectTo: "login", pathMatch: "full"}
+      { path: "all", component: AllCharacterComponent, canActivate: [AuthGuard]},
+      { path: "specific", component: SpecificCharacterComponent, canActivate: [AuthGuard]},
+      { path: "footballers", component: FootballerComponentComponent, canActivate: [AuthGuard]},
+      { path: "footballerbyid", component: SpecificFootballerComponent, canActivate: [AuthGuard]},
+      { path: "settings", component: SettingsFootballersComponent, canActivate: [AuthGuard]},
+      { path: "callback", component: CallbackComponent},
+      { path: "", redirectTo: "all", pathMatch: "full"},
+      { path: "**", redirectTo: "all", pathMatch: "full"}
     ])
   ],
-  providers: [APIServiceService,AuthService],
+  providers: [APIServiceService,AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +26,15 @@ export class APIServiceService {
   nationality : string;
   born : string;
 
-  authKey : string = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1UWTBPVGRCTmpjeVJVSkdRamRETURoRU16TTBNMEV6UmpJM05qZEZOVVU1TXpoRVJqaEdOZyJ9.eyJpc3MiOiJodHRwczovL2Rldi1tbW0xeHhtMS5ldS5hdXRoMC5jb20vIiwic3ViIjoiY1Z0bEhHaHVUZmVCYjV0VFZ0SWJHV3FDYzZJRkowUDVAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzE2L2FwaS9mb290YmFsbGVycyIsImlhdCI6MTU1NzAwMDkzOSwiZXhwIjoxNTU3MDg3MzM5LCJhenAiOiJjVnRsSEdodVRmZUJiNXRUVnRJYkdXcUNjNklGSjBQNSIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.uoy3AUypdFH_XRYjIZOsPSNACk5RNu5wPhw9HsFo833nmfNb9vKwSzOCyHSYxWgzNoapwQocTzy8rnEK9gAcTijzNve0ye-Pv0qdaZ3pNysBRHNWu-i-KPfk8go_CymGCfVw3_tcaVuqQt2rV0C8CYss9zPGuG9lLSXBSYJibuJlB9nUGjFhE77c6MTjrsGnGn4uR8XCyG6NkcL0ySWTy8MgMlynVRBavznBLuht0Zx_VdVuMmE-I-_sEczqu8C-nl1_nN138ZTCyP8EtIGo4Yw-5XXOJPD5_uLr_ZZRIeTxMPrJbsdlPBI9U2InGVW4O__QfFs0EwoH6aIs8hSuBg"
+  authKey : string;
+
+  constructor(private http : HttpClient,private authServ:AuthService) { 
+    
+  }
 
   header = {
     headers: new HttpHeaders()
-      .set('Authorization', `${this.authKey}`)
-  }
-
-  constructor(private http : HttpClient) { 
-
+      .set('Authorization', `Bearer ${this.authKey}`)
   }
 
   GetAllCharacters(pageSize:number = 10,pageNr:number = 1,gender:string){
@@ -54,6 +55,7 @@ export class APIServiceService {
     if(this.weightFilter == null){
       this.weightFilter = "";
     }
+    console.log(this.authKey);
     return this.http.get<IFootballer[]>(`https://localhost:44316/api/footballers?page=${this.pageNumberFootballer}
                                                                                     &pageSize=${this.pageSizeFootballer}
                                                                                     &direction=${this.direction}

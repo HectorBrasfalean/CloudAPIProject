@@ -9,6 +9,6 @@
       <button pButton type="button" label="Settings Footballers" [routerLink]="['/settings']" [routerLinkActive]="['ui-button-success']"></button>
     </div>
     <div class="ui-toolbar-group-right">
-          <button pButton type="button" label="Log out" *ngIf="AuthServ.isAuthenticated()" (click)="LogOut()" [routerLink]="['/login']"></button>
+          <button pButton type="button" label="Log out" *ngIf="AuthServ.isLoggedIn" (click)="LogOut()" [routerLink]="['/login']"></button>
     </div>
 </p-toolbar>

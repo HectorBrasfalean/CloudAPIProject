@@ -10,14 +10,17 @@ export class AppComponent {
   title = 'CloudAPIProject';
 
   constructor(private AuthServ:AuthService){
-    AuthServ.handleAuthentication();
-
+    AuthServ.handleLoginCallback();
+    // if(!(AuthServ.isAuthenticated())){
+    //   window.location.href="http://localhost:4200/login";
+    // }
+    console.log(AuthServ.isLoggedIn);
   }
 
   ngOnInit(){
-    if (this.AuthServ.isAuthenticated()) {
-      this.AuthServ.renewTokens();
-    }
+    // if (this.AuthServ.isLoggedIn) {
+    //   this.AuthServ.renewTokens();
+    // }
     
   }
 }

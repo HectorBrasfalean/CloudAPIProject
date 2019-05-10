@@ -18,9 +18,7 @@ export class AllCharacterComponent implements OnInit {
     this.Gender = this.APIServ.gender;
     this.PageNr = this.APIServ.pageNumber;
     this.PageSize = this.APIServ.pageSize;
-    //if(!AuthServ.isAuthenticated()){
-    //   window.location.href="http://localhost:4200/login";
-    //}
+    
   }
 
   ngOnInit() {
