@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 import { HttpClient } from '@angular/common/http';
+import { APIServiceService } from './apiservice.service';
 
 
 @Injectable()
@@ -29,7 +30,10 @@ export class AuthService {
     client_secret: '-OS3kuLnSSmw-Ogg26JKU4zzn6K7sn4340FAfYQmfFrT6UQW41vS8t4kv9Adza43'
   });
 
-  constructor(public router: Router,private http : HttpClient) {
+  
+
+  constructor(public router: Router,private http : HttpClient,
+    private APIServ : APIServiceService) {
     this.getAccessToken();
   }
 
@@ -60,8 +64,11 @@ export class AuthService {
 
   handleLoginCallback() {
     // When Auth0 hash parsed, get profile
-    this.auth0.parseHash((err, authResult) => {
+    this.auth0.parseHash(async (err, authResult) => {
       if (authResult && authResult.accessToken) {
+        let apiKey = await this.getToken();
+         console.log(apiKey.access_token);
+          this.APIServ.AuthKey = apiKey.access_token;
         window.location.hash = '';
         this.getUserInfo(authResult);
       } else if (err) {
@@ -76,33 +83,9 @@ export class AuthService {
     
   }
 
-  getToken(){
-    return this.http.post<IReceivedToken>(`https://dev-mmm1xxm1.eu.auth0.com/oauth/token`,this.grantToken);
+  async getToken(){
+    return await this.http.post<IReceivedToken>(`https://dev-mmm1xxm1.eu.auth0.com/oauth/token`,this.grantToken).toPromise();
   }
-
- 
-
-
-  // private localLogin(authResult): void {
-  //   // Set the time that the Access Token will expire at
-  //   const expiresAt = (authResult.expiresIn * 1000) + Date.now();
-  //   this._accessToken = authResult.accessToken;
-  //   this._idToken = authResult.idToken;
-  //   this._expiresAt = expiresAt;
-  // }
-
-  // public renewTokens(): void {
-  //   this.auth0.checkSession({}, (err, authResult) => {
-  //     if (authResult && authResult.accessToken && authResult.idToken) {
-  //       this.localLogin(authResult);
-  //     } else if (err) {
-  //       alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-  //       this.logout();
-        
-  //     }
-  //   });
-  // }
-  
 
   logout() {
     // Log out of Auth0 session

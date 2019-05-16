@@ -25,17 +25,25 @@ export class APIServiceService {
   length : number;
   nationality : string;
   born : string;
+  header = {};
+  private authKey : string;
 
-  authKey : string;
+  get AuthKey(){
+    return this.authKey;
+  }
 
-  constructor(private http : HttpClient,private authServ:AuthService) { 
+  set AuthKey(key : string){
+    this.authKey = key;
+    this.header = {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${this.authKey}`)
+    }
+  }
+  
+  constructor(private http : HttpClient) { 
     
   }
 
-  header = {
-    headers: new HttpHeaders()
-      .set('Authorization', `Bearer ${this.authKey}`)
-  }
 
   GetAllCharacters(pageSize:number = 10,pageNr:number = 1,gender:string){
     return this.http.get<ICharacter[]>(`https://anapioficeandfire.com/api/characters?pageSize=${pageSize}
