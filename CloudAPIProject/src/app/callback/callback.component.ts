@@ -12,6 +12,7 @@ export class CallbackComponent implements OnInit {
 
   ngOnInit() {
     this.authService.handleLoginCallback();
+    console.log(this.authService.isLoggedIn);
   }
 
 }

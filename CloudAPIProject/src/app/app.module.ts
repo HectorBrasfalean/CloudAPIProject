@@ -15,11 +15,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FootballerComponentComponent } from './footballer-component/footballer-component.component';
 import { SettingsFootballersComponent } from './settings-footballers/settings-footballers.component';
 import { SpecificFootballerComponent } from './specific-footballer/specific-footballer.component';
-import { LoginComponent } from './login/login.component';
 import { callbackify } from 'util';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { CallbackComponent } from './callback/callback.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { CallbackComponent } from './callback/callback.component';
     FootballerComponentComponent,
     SettingsFootballersComponent,
     SpecificFootballerComponent,
-    LoginComponent,
+    HomeComponent,
     CallbackComponent,
   ],
   imports: [
@@ -40,7 +40,7 @@ import { CallbackComponent } from './callback/callback.component';
     ToolbarModule,
     ButtonModule,
     RouterModule.forRoot([
-      { path: "login", component: LoginComponent},
+      { path: "home", component: HomeComponent},
       { path: "all", component: AllCharacterComponent, canActivate: [AuthGuard]},
       { path: "specific", component: SpecificCharacterComponent, canActivate: [AuthGuard]},
       { path: "footballers", component: FootballerComponentComponent, canActivate: [AuthGuard]},

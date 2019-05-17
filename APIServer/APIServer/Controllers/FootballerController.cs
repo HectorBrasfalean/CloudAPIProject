@@ -88,7 +88,8 @@ namespace APIServer.Controllers
         [HttpPost]
         public ActionResult<Footballer> AddFootballer([FromBody] Footballer footballer)
         {
-            if (context.Footballers.Any(o => o.Name == footballer.Name))
+            var tempFootballer = context.Footballers.FirstOrDefault(o => o.Name == footballer.Name);
+            if (tempFootballer != null)
                 return NoContent();
             context.Footballers.Add(footballer);
             context.SaveChanges();

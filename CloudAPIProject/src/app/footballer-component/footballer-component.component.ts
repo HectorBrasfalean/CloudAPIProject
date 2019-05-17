@@ -57,15 +57,21 @@ export class FootballerComponentComponent implements OnInit {
     this.footballer.nationality = this.Nationality;
     this.APIServ.AddFootballer(this.footballer).subscribe((res) => {
       console.log("Created the footballer");
+      this.Name = "";
+      this.Weight = NaN;
+      this.Length = NaN;
+      this.Nationality = "";
+      this.Born = "";
     });
-    window.location.reload();
+    this.GetFootballers();
   }
 
   DeleteFootballer(){
     this.APIServ.DeleteFootballer(this.Id).subscribe((res) => {
       console.log("Deleted the footballer");
+      this.Id = NaN;
     });
-    window.location.reload();
+    this.GetFootballers();
   }
 
   GoToPrevPage(){

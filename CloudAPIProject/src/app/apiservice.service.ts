@@ -56,7 +56,7 @@ export class APIServiceService {
   }
 
   GetFootballer(id:number){
-    return this.http.get<IFootballer>(`https://localhost:44316/api/footballers/${id}`, this.header);
+    return this.http.get<IFootballer>(`https://footballerapi.appspot.com/api/footballers/${id}`, this.header);
   }
   
   GetFootballers(){
@@ -64,7 +64,7 @@ export class APIServiceService {
       this.weightFilter = "";
     }
     console.log(this.authKey);
-    return this.http.get<IFootballer[]>(`https://localhost:44316/api/footballers?page=${this.pageNumberFootballer}
+    return this.http.get<IFootballer[]>(`https://footballerapi.appspot.com/api/footballers?page=${this.pageNumberFootballer}
                                                                                     &pageSize=${this.pageSizeFootballer}
                                                                                     &direction=${this.direction}
                                                                                     &weight=${this.weightFilter}
@@ -74,11 +74,11 @@ export class APIServiceService {
 
 
   AddFootballer(footballer : IFootballer){
-    return this.http.post(`https://localhost:44316/api/footballers`,footballer, this.header);
+    return this.http.post(`https://footballerapi.appspot.com/api/footballers`,footballer, this.header);
   }
 
   DeleteFootballer(id : number){
-    return this.http.delete(`https://localhost:44316/api/footballers/${id}`, this.header);
+    return this.http.delete(`https://footballerapi.appspot.com/api/footballers/${id}`, this.header);
   }
 }
 

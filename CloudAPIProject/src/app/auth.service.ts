@@ -67,20 +67,18 @@ export class AuthService {
     this.auth0.parseHash(async (err, authResult) => {
       if (authResult && authResult.accessToken) {
         let apiKey = await this.getToken();
-         console.log(apiKey.access_token);
-          this.APIServ.AuthKey = apiKey.access_token;
-        window.location.hash = '';
+        this.APIServ.AuthKey = apiKey.access_token;
+        //window.location.hash = '';
         this.getUserInfo(authResult);
       } else if (err) {
         console.error(`Error: ${err.error}`);
       }
-      this.router.navigate(['/']);
+      this.router.navigate(['/all']);
     });
   }
 
   public login() : void{
     this.auth0.authorize();
-    
   }
 
   async getToken(){
@@ -92,7 +90,7 @@ export class AuthService {
     // Ensure that returnTo URL is specified in Auth0
     // Application settings for Allowed Logout URLs
     this.auth0.logout({
-      returnTo: 'http://localhost:4200/login',
+      returnTo: 'http://localhost:4200/home',
       clientID: 'cVtlHGhuTfeBb5tTVtIbGWqCc6IFJ0P5'
     });
   }

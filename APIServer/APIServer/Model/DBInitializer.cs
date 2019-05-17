@@ -11,7 +11,7 @@ public class DBInitializer
         context.Database.EnsureCreated();
 
         //Are there already books present ?
-        if (!context.Footballers.Any())
+        if (context.Footballers.Count() == 0)
         {
             Footballer[] footballers =
             {
