@@ -1,9 +1,4 @@
-button{
-    font-family: "Comic Sans MS";
-    background-color:darkblue;
-    color: lightblue;
-    border-color: rgb(66, 66, 155);
-}
+
 ul{
     list-style: none;
 }
@@ -15,7 +10,7 @@ ul{
     50% 50%;
 } 
 input{
-    font-family: "Comic Sans MS";
+    font-family: "Roboto";
     text-align: center;
 }
 p{

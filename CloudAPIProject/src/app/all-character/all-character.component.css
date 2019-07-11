@@ -1,23 +1,25 @@
 
 select{
-    font-family: "Comic Sans MS";
     text-align-last: center;
 }
 input{
-    font-family: "Comic Sans MS";
     text-align: center;
-}
-button{
-    font-family: "Comic Sans MS";
-    background-color:darkblue;
-    color: lightblue;
-    border-color: rgb(66, 66, 155);
 }
 
 .list{
     text-align: center;
 
- 
+}
+.paging{
+    width:100%;
+    display: grid;
+    text-align: center;
+
+  grid-template-columns:
+    33% 33% 33%;
+}
+p{
+    padding-top: 8px;
 }
 
 ol{

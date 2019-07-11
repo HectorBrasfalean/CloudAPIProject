@@ -1,16 +1,8 @@
 ol li{
     list-style-type: none
 }
-button{
-    font-family: "Comic Sans MS";
-    background-color:darkblue;
-    color: lightblue;
-    border-color: rgb(66, 66, 155);
-    
-}
+
 input{
-    font-family: "Comic Sans MS";
-   
     text-align: center;
 }
 

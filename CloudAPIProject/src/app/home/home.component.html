@@ -1,4 +1,7 @@
 <div>
     <h1>Welcome to my Cloud API Project</h1>
     <h3 *ngIf="!AuthServ.isLoggedIn">Please log in to fully use the web application</h3>
+    <h3 *ngIf="AuthServ.isLoggedIn">Login succesful</h3>
+    <h4 *ngIf="AuthServ.isLoggedIn">Feel free to try it out</h4>
+    <img src="../../assets/codingpic.jpg">
 </div>

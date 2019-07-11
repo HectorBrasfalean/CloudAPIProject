@@ -6,40 +6,42 @@
         <option value="male">Male</option>
         <option value="">Both</option>
       </select>
-      
-      <br>
-      <br>
+      <hr width="50%">
       Page Size : <br> <input type ="number" [(ngModel)] = "PageSize" (ngModelChange)="Save()">
-      <br><br>
+      <hr width="50%">
       Page Number : <br> <input type ="number" [(ngModel)] = "PageNr" (ngModelChange)="Save()">
-      <br>
-      <br>
-      <button *ngIf="PageSize > 0 && PageNr > 0" (click)="GetAllCharacters()">Get Characters </button>
-      
+      <hr width="50%">
+      <button type="button" *ngIf="PageSize > 0 && PageNr > 0" class="btn btn-primary" (click)="GetAllCharacters()">Get Characters</button>
   </div>
 
   <div *ngIf="Characters">
+    <div class="paging">
+        <button (click)="GoToPrevPage()" class="btn btn-primary">Prev page</button>
+        <p>{{PageNr}}</p>
+        <button (click)="GoToNextPage()" class="btn btn-primary">Next page</button>
+    </div>
     <ul>
-      <li *ngFor="let Character of Characters">
-      
-      <p>
-        ===================================<br>
-        ID: {{Character.url | slice : 45}}<br> 
-        Gender: {{Character.gender}}  
-      </p>
-      
-      <div *ngIf="Character.name != ''">
-          Name: {{Character.name}}
+      <div class="grid-container">
+          <li *ngFor="let Character of Characters">
+          <p>
+              <hr width="50%">
+              <strong>ID: {{Character.url | slice : 45}}</strong><br> 
+              Gender: {{Character.gender}}  
+
+            
+            <div *ngIf="Character.name != ''">
+                Name: {{Character.name}}
+            </div>
+            <div *ngIf="Character.tvSeries != ''">
+              TV Series : <br>
+              <ol class="list">
+                <li *ngFor="let tvserie of Character.tvSeries">{{tvserie}}</li>
+              </ol>
+            </div>
+          </li>
       </div>
-      <div *ngIf="Character.tvSeries != ''">
-        TV Series : <br>
-        <ol class="list">
-          <li *ngFor="let tvserie of Character.tvSeries">{{tvserie}}</li>
-        </ol>
-      </div>
-      </li>
+      
     </ul>
-    <button (click)="GoToPrevPage()">Prev page</button>&nbsp;&nbsp;
-    <button (click)="GoToNextPage()">Next page</button> 
+
   </div>
 </div>
