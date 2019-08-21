@@ -10,3 +10,4 @@ Mogelijkheid om te filteren op specifieke voetballers. Web applicatie is beveili
 * Bootstrap
 * Google Cloud
 * ASP.NET
+* Git
