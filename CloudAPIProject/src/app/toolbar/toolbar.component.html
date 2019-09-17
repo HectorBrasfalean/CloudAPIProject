@@ -1,49 +1,31 @@
-<!-- 
-<p-toolbar>
-    <div class="ui-toolbar-group-left">
-        <button pButton type="button" label="Home" [routerLink]="['/home']" [routerLinkActive]="['ui-button-success']"></button>
-      <button pButton type="button" label="Get characters" [routerLink]="['/all']" [routerLinkActive]="['ui-button-success']"></button>
-      <button pButton type="button" label="Get character by id" [routerLink]="['/specific']" [routerLinkActive]="['ui-button-success']"></button>
-      <button pButton type="button" label="GET Footballers" [routerLink]="['/footballers']" [routerLinkActive]="['ui-button-success']"></button>
-      <button pButton type="button" label="GET Footballer by id" [routerLink]="['/footballerbyid']" [routerLinkActive]="['ui-button-success']"></button>
-      <button pButton type="button" label="Settings Footballers" [routerLink]="['/settings']" [routerLinkActive]="['ui-button-success']"></button>
-    </div>
-    <div class="ui-toolbar-group-right">
-      <button pButton type="button" label="Log in" *ngIf="!AuthServ.isLoggedIn" (click)="LogIn()"></button>
-      <button pButton type="button" label="Log out" *ngIf="AuthServ.isLoggedIn" (click)="LogOut()" [routerLink]="['/home']"></button>
-    </div>
-</p-toolbar> -->
 <div class="jumbotron" style="margin-bottom: 0px;">
   <h1>API Project made by Brasfalean Hector</h1>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseTarg">
+  <a class="navbar-brand" [routerLink]="['/home']">API Project</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseTarget"
+    aria-controls="collapseTarget" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="collapseTarg">
-    <a class="navbar-brand" [routerLink]="['/home']">API Project</a>
-    <ul class="nav navbar-nav">
-     <li class="nav-item">
-       <a [routerLink]="['/all']" class="nav-link">Get characters</a>
-     </li>
+  <div class="collapse navbar-collapse" id="collapseTarget">
+    <ul class="mr-auto navbar-nav">
       <li class="nav-item">
-        <a [routerLink]="['/specific']" class="nav-link">Get character by ID</a>
-     </li>
-     <li class="nav-item">
-       <a [routerLink]="['/footballers']" class="nav-link">Get footballers</a>
-     </li>
-      <li class="nav-item">
-       <a [routerLink]="['/footballerbyid']" class="nav-link">Get footballer by ID</a>
+        <a [routerLinkActive]="['active']" [routerLink]="['/all']" class="nav-link">Get characters</a>
       </li>
-     <li class="nav-item">
-          <a [routerLink]="['/settings']" class="nav-link">Settings footballer API</a>
-     </li>
-   </ul>
-   <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" *ngIf="!AuthServ.isLoggedIn" (click)="LogIn()">Log in</a></li>
-      <li class="nav-item"><a class="nav-link" *ngIf="AuthServ.isLoggedIn" (click)="LogOut()" [routerLink]="['/home']">Log out</a></li>
-   </ul>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['/specific']" class="nav-link">Get character by ID</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['/footballers']" class="nav-link">Get footballers</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['/footballerbyid']" class="nav-link">Get footballer by ID</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLinkActive]="['active']" [routerLink]="['/settings']" class="nav-link">Settings footballer API</a>
+      </li>
+    </ul>
+    <button class="btn btn-primary" *ngIf="!AuthServ.isLoggedIn" (click)="LogIn()">Log in</button>
+    <button class="btn btn-primary" *ngIf="AuthServ.isLoggedIn" (click)="LogOut()" [routerLink]="['/home']">Log out</button>
   </div>
 </nav>

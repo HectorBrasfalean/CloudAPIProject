@@ -1,14 +1,14 @@
 <body>
   Page Size: <br> 
   <input type ="number" [(ngModel)] = "PageSize" (ngModelChange)="Save()">
-  <hr width="30%">
+  <hr>
   Sort direction :
   <br>
   <select [(ngModel)]="Direction" (ngModelChange)="Save()">
       <option value="asc">Ascending</option>
       <option value="desc">Descending</option>
   </select>
-  <hr width="30%">
+  <hr>
   Sort by :
   <br>
   <select [(ngModel)]="SortBy" (ngModelChange)="Save()">
@@ -17,10 +17,10 @@
       <option value="length">Length</option>
       <option value="nationality">Nationality</option>
   </select>
-  <hr width="30%">
+  <hr>
   Filter on nationality:<br>
   <input type ="text" [(ngModel)] = "Nationality" (ngModelChange)="Save()">
-  <hr width="30%">
+  <hr>
   Filter on weight:<br>
   <input type ="number" [(ngModel)] = "Weight" (ngModelChange)="Save()">&nbsp;kg<br><br>
 </body>

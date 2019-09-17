@@ -1,47 +1,34 @@
 <div class="grid-container">
   <div>
-      Filter on gender : <br> 
-      <select [(ngModel)]="Gender" (ngModelChange)="Save()">
-        <option value="female">Female</option>
-        <option value="male">Male</option>
-        <option value="">Both</option>
-      </select>
-      <hr width="50%">
-      Page Size : <br> <input type ="number" [(ngModel)] = "PageSize" (ngModelChange)="Save()">
-      <hr width="50%">
-      Page Number : <br> <input type ="number" [(ngModel)] = "PageNr" (ngModelChange)="Save()">
-      <hr width="50%">
-      <button type="button" *ngIf="PageSize > 0 && PageNr > 0" class="btn btn-primary" (click)="GetAllCharacters()">Get Characters</button>
+    Filter on gender : <br>
+    <select [(ngModel)]="Gender" (ngModelChange)="Save()">
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+      <option value="">Both</option>
+    </select>
+    <hr width="50%">
+    Page Size : <br> <input type="number" [(ngModel)]="PageSize" (ngModelChange)="Save()">
+    <hr width="50%">
+    Page Number : <br> <input type="number" [(ngModel)]="PageNr" (ngModelChange)="Save()">
+    <hr width="50%">
+    <button type="button" *ngIf="PageSize > 0 && PageNr > 0" class="btn btn-primary" (click)="GetAllCharacters()">Get
+      Characters</button>
   </div>
 
   <div *ngIf="Characters">
-    <div class="paging">
-        <button (click)="GoToPrevPage()" class="btn btn-primary">Prev page</button>
-        <p>{{PageNr}}</p>
-        <button (click)="GoToNextPage()" class="btn btn-primary">Next page</button>
+    <div class="grid-container-character">
+      <li *ngFor="let Character of Characters">
+        <strong>ID: {{Character.url | slice : 45}}</strong><br>
+        Gender: {{Character.gender}}
+        <div *ngIf="Character.name != ''">
+          Name: {{Character.name}}
+        </div>
+      </li>
     </div>
-    <ul>
-      <div class="grid-container">
-          <li *ngFor="let Character of Characters">
-          <p>
-              <hr width="50%">
-              <strong>ID: {{Character.url | slice : 45}}</strong><br> 
-              Gender: {{Character.gender}}  
-
-            
-            <div *ngIf="Character.name != ''">
-                Name: {{Character.name}}
-            </div>
-            <div *ngIf="Character.tvSeries != ''">
-              TV Series : <br>
-              <ol class="list">
-                <li *ngFor="let tvserie of Character.tvSeries">{{tvserie}}</li>
-              </ol>
-            </div>
-          </li>
-      </div>
-      
-    </ul>
-
+    <hr width="100%">
+    <div class="paging">
+      <button (click)="GoToPrevPage()" class="btn btn-primary">Prev page</button>
+      <p>{{PageNr}}</p>
+      <button (click)="GoToNextPage()" class="btn btn-primary">Next page</button>
+    </div>
   </div>
-</div>

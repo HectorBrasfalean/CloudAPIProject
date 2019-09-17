@@ -2,19 +2,18 @@
     <div class="form">
       <h2>Add a footballer</h2>
       <p>Fill in everything and the button to add the footballer will appear.</p>
-      <hr>
       Name : <input type ="text" [(ngModel)] = "Name" (ngModelChange)="Save()" placeholder="Lionel Messi"><br>
       Length : <input type ="number" [(ngModel)] = "Length" (ngModelChange)="Save()" placeholder="1.74">&nbsp;m<br>
       Weight : <input type ="number" [(ngModel)] = "Weight" (ngModelChange)="Save()" placeholder="72">&nbsp;kg<br>
       Nationality : <input type ="text" [(ngModel)] = "Nationality" (ngModelChange)="Save()" placeholder="Argentine"><br>
       Born : <input type ="text" [(ngModel)] = "Born" (ngModelChange)="Save()" placeholder="24 June 1987"><br><br>
       <button *ngIf="Name && Length > 0 && Weight > 0 && Nationality && Born" type="button" class="btn btn-primary" (click)="AddFootballer()">Add Footballer</button>
-      <div class="form">
+      <hr>
+      <div>
           <h2>Delete a footballer</h2>
           <p>Fill in the id of the player and the button will apear.</p>
-          <hr>
           ID : <input type ="number" [(ngModel)] = "Id" (ngModelChange)="Save()" placeholder="1"><br><br>
-          <button pButton *ngIf="Id" (click)="DeleteFootballer()">Delete Footballer</button>
+          <button type="button" class="btn btn-primary" *ngIf="Id" (click)="DeleteFootballer()">Delete Footballer</button>
       </div>
     </div>
     <div *ngIf="!Footballers">

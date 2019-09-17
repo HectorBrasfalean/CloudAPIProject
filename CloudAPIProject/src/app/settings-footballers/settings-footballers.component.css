@@ -9,3 +9,6 @@ input{
 select{
     text-align-last: center;
 }
+hr{
+    width: 250px;
+}

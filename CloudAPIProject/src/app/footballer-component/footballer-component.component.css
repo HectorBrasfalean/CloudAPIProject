@@ -5,7 +5,6 @@ ul{
 .grid-container {
     width:100%;
     display: grid;
-
     grid-template-columns:
     50% 50%;
 } 
@@ -31,6 +30,7 @@ h2{
 }
 .form{
     text-align: center;
+    padding-bottom: 50px;
 }
 
 .sub-container{
@@ -38,4 +38,15 @@ h2{
     width:100%;
     grid-template-columns: 49% 49%;
     grid-gap: 2%;
+}
+@media screen and (max-width: 660px){
+    .grid-container{
+        grid-template-columns: 100%;
+    }
+    .form{
+        padding-bottom: 0px;
+    }
+    .grid-container div{
+        text-align: center;
+    }
 }

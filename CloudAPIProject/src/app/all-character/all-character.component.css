@@ -1,41 +1,48 @@
-
-select{
-    text-align-last: center;
-}
-input{
-    text-align: center;
+select {
+  text-align-last: center;
 }
 
-.list{
-    text-align: center;
-
+input {
+  text-align: center;
 }
-.paging{
-    width:100%;
-    display: grid;
-    text-align: center;
 
+.listTvSeries {
+  text-align: center;
+  
+}
+
+.btn-primary{
+    margin-bottom: 10px;
+}
+
+.paging {
+  width: 100%;
+  display: grid;
+  text-align: center;
   grid-template-columns:
     33% 33% 33%;
-}
-p{
-    padding-top: 8px;
+  padding-bottom: 50px;
 }
 
-ol{
-    display: inline-block;
-       margin-left: auto;
-       margin-right: auto;
+ol {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }
-ul{
-    list-style: none;
+
+li {
+  list-style: none;
 }
 
 .grid-container {
-    width:100%;
-    display: grid;
-    text-align: center;
-
-  grid-template-columns:
-    50% 50%;
-} 
+  width: 80%;
+  display: grid;
+  text-align: center;
+  margin:auto;
+  grid-template-columns: 50% 50%;
+}
+@media screen and (max-width: 770px){
+    .grid-container{
+        grid-template-columns: 100%;
+    }
+}
