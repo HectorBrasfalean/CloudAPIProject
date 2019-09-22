@@ -14,16 +14,16 @@
           <p>Fill in the id of the player and the button will apear.</p>
           ID : <input type ="number" [(ngModel)] = "Id" (ngModelChange)="Save()" placeholder="1"><br><br>
           <button type="button" class="btn btn-primary" *ngIf="Id" (click)="DeleteFootballer()">Delete Footballer</button>
-      </div>
+          <hr>
+        </div>
     </div>
     <div *ngIf="!Footballers">
       <button type="button" class="btn btn-primary" (click)="GetFootballers()">Get Footballers</button>
     </div>
     <div *ngIf="Footballers">
         <ul>
-          <h4>Current Page : {{Page}}</h4>
+          
           <div class="sub-container">
- 
               <li *ngFor="let Footballer of Footballers">
                   <strong>{{Footballer.name}} ( ID : {{Footballer.id}} )</strong>
                   <ul>
@@ -38,6 +38,7 @@
         </ul>
         <div class="buttonclass">
             <button type="button" class="btn btn-primary" (click)="GoToPrevPage()">Prev Page</button>
+            <h4>{{Page}}</h4>
             <button type="button" class="btn btn-primary" (click)="GoToNextPage()">Next Page</button>
         </div>
     </div>

@@ -52,6 +52,7 @@ export class AuthService {
         this._setSession(authResult, profile);
       }
     });
+  
   }
 
   private _setSession(authResult, profile) {
@@ -98,10 +99,10 @@ export class AuthService {
   get isLoggedIn(): boolean {
     // Check if current date is before token
     // expiration and user is signed in locally
+    console.log(`expire :${this._expiresAt}`);
+    console.log(`auth :${this.authenticated}`);
     return Date.now() < this._expiresAt && this.authenticated;
   }
-
-
 }
 export interface IGrantToken {
   audience: string;

@@ -15,7 +15,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.AuthServ.isLoggedIn);
+    console.log(`check : ${this.AuthServ.auth0.checkSession({audience: "https://localhost:44316/api/footballers"})}`);
   }
 
   LogIn(){

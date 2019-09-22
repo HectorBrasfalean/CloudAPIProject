@@ -28,7 +28,8 @@ namespace APIServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<LibraryContext>(
-                options => options.UseMySQL(
+                // options => options.UseMySQL(
+                options => options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")
                 )
             );
